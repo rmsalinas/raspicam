@@ -75,7 +75,16 @@ namespace raspicam {
         }
     }
 
-    void RaspiCam_Still_Cv::release() {}
+    void RaspiCam_Still_Cv::release() {
+        if(_isOpened){
+            _isOpened = false;
+            // free image_buffer memory
+            delete image_buffer;
+            // assign 0 to the pointer so it is recreated next time grab function is called
+            image_buffer = 0;
+            _impl->release();
+        }
+    }
 
 
 

@@ -195,6 +195,19 @@ namespace raspicam {
             return status;
         }
 
+        void Private_Impl_Still::disconnectPorts() {
+            // disable connection if enabled
+            if ( encoder_connection->is_enabled && mmal_connection_disable( encoder_connection ) != MMAL_SUCCESS ) {
+                cout << API_NAME << ": fail to disable encoder connection\n";
+            }
+
+            // destroy encoder connection
+            // mmal_connection_disable call is mandatory before calling the destroy function otherwise it fails
+            if ( encoder_connection && mmal_connection_destroy( encoder_connection ) != MMAL_SUCCESS ) {
+                cout << API_NAME << ": fail to destroy encoder connection\n";
+            }
+        }
+
         int Private_Impl_Still::createCamera() {
             if ( mmal_component_create ( MMAL_COMPONENT_DEFAULT_CAMERA, &camera ) ) {
                 cout << API_NAME << ": Failed to create camera component.\n";
@@ -263,11 +276,14 @@ namespace raspicam {
                 return -1;
             }
 
-            if ( ! ( encoder_pool = mmal_port_pool_create ( camera_still_port, camera_still_port->buffer_num, camera_still_port->buffer_size ) ) ) {
-                cout << API_NAME << ": Failed to create buffer header pool for camera.\n";
-                destroyCamera();
-                return -1;
-            }
+            // This is the reason I could not free fully the camera because this pool could never be freed since 
+            // the pointer encoder_pool was reassigned in createEncoder function, we lost its reference
+            // so this allocation is useless or misused -> camera_pool ?
+            /*if ( ! ( encoder_pool = mmal_port_pool_create ( camera_still_port, camera_still_port->buffer_num, camera_still_port->buffer_size ) ) ) {
+                    cout << API_NAME << ": Failed to create buffer header pool for camera.\n";
+                    destroyCamera();
+                    return -1;
+            }*/
 
             return 0;
         }
@@ -354,6 +370,19 @@ namespace raspicam {
             return 0;
         }
 
+        void Private_Impl_Still::release() {
+            if ( !_isInitialized ) return;
+
+            disconnectPorts();
+
+            // camera and encoder are not disabled here because it cause destroy function to not do its job properly
+
+            destroyEncoder();
+            destroyCamera();
+
+            _isInitialized=false;
+        }
+
         bool Private_Impl_Still::takePicture ( unsigned char * preallocated_data, unsigned int length ) {
             initialize();
             int ret = 0;
@@ -398,7 +427,7 @@ namespace raspicam {
             userdata->length = length;
             userdata->imageCallback = userCallback;
             encoder_output_port->userdata = ( struct MMAL_PORT_USERDATA_T * ) userdata;
-            startCapture();
+            return startCapture();
         }
 
         int Private_Impl_Still::startCapture() {

@@ -53,7 +53,9 @@ namespace raspicam {
         return _impl->takePicture ( preallocated_data, length );
 
     }
-    void RaspiCam_Still::release() {}
+    void RaspiCam_Still::release() {
+        _impl->release();
+    }
 
     size_t RaspiCam_Still::getImageBufferSize() const{
         return      _impl-> getImageBufferSize();

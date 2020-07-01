@@ -102,6 +102,7 @@ namespace raspicam {
             void destroyEncoder();
             void setDefaults();
             MMAL_STATUS_T connectPorts ( MMAL_PORT_T *output_port, MMAL_PORT_T *input_port, MMAL_CONNECTION_T **connection );
+            void disconnectPorts();
 
 	    bool _isInitialized;
             public:
@@ -122,6 +123,7 @@ namespace raspicam {
             int startCapture ( imageTakenCallback userCallback, unsigned char * preallocated_data, unsigned int offset, unsigned int length );
             void stopCapture();
             bool takePicture ( unsigned char * preallocated_data, unsigned int length );
+            void release();
 	    
 	        size_t getImageBufferSize() const;
             void bufferCallback ( MMAL_PORT_T *port, MMAL_BUFFER_HEADER_T *buffer );
