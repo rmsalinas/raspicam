@@ -127,8 +127,11 @@ namespace raspicam {
             //videoStabilisation = 0;
             //exposureCompensation = 0;
             exposure = RASPICAM_EXPOSURE_AUTO;
+            shutterSpeed = 0;
             metering = RASPICAM_METERING_AVERAGE;
             awb = RASPICAM_AWB_AUTO;
+            awbg_red = 1.0f;
+            awbg_blue = 1.0f;
             imageEffect = RASPICAM_IMAGE_EFFECT_NONE;
             //colourEffects.enable = 0;
             //colourEffects.u = 128;
@@ -150,7 +153,9 @@ namespace raspicam {
             commitSaturation();
             commitISO();
             commitExposure();
+            commitShutterSpeed();
             commitMetering();
+            commitAWB_RB();
             commitAWB();
             commitImageEffect();
             commitRotation();
@@ -540,8 +545,21 @@ namespace raspicam {
             changedSettings = true;
         }
 
+        void Private_Impl_Still::setShutterSpeed ( unsigned int shutter ) {
+            if ( shutter > 30000 )
+                shutter = 30000;
+            this->shutterSpeed= shutter;
+            changedSettings = true;
+        }
+
         void Private_Impl_Still::setAWB ( RASPICAM_AWB awb ) {
             this->awb = awb;
+            changedSettings = true;
+        }
+
+        void Private_Impl_Still::setAWB_RB ( float red_g, float blue_g ) {
+            this->awbg_blue = blue_g;
+            this->awbg_red = red_g;
             changedSettings = true;
         }
 
@@ -609,8 +627,20 @@ namespace raspicam {
             return exposure;
         }
 
+        unsigned int Private_Impl_Still::getShutterSpeed() {
+            return shutterSpeed;
+        }
+
         RASPICAM_AWB Private_Impl_Still::getAWB() {
             return awb;
+        }
+
+        float Private_Impl_Still::getAWBG_red() {
+            return awbg_red;
+        }
+
+        float Private_Impl_Still::getAWBG_blue() {
+            return awbg_blue;
         }
 
         RASPICAM_IMAGE_EFFECT Private_Impl_Still::getImageEffect() {
@@ -631,7 +661,7 @@ namespace raspicam {
 
         void Private_Impl_Still::commitBrightness() {
             mmal_port_parameter_set_rational ( camera->control, MMAL_PARAMETER_BRIGHTNESS, ( MMAL_RATIONAL_T ) {
-                brightness, 100
+                (int32_t)brightness, 100
             } );
         }
 
@@ -679,10 +709,24 @@ namespace raspicam {
                 cout << API_NAME << ": Failed to set exposure parameter.\n";
         }
 
+        void Private_Impl_Still::commitShutterSpeed() {
+            if ( mmal_port_parameter_set_uint32 ( camera->control, MMAL_PARAMETER_SHUTTER_SPEED, this->shutterSpeed ) !=  MMAL_SUCCESS )
+                cout << __func__ << ": Failed to set shutter parameter.\n";
+        }
+
         void Private_Impl_Still::commitAWB() {
             MMAL_PARAMETER_AWBMODE_T param = {{MMAL_PARAMETER_AWB_MODE,sizeof ( param ) }, convertAWB ( awb ) };
             if ( mmal_port_parameter_set ( camera->control, &param.hdr ) != MMAL_SUCCESS )
                 cout << API_NAME << ": Failed to set AWB parameter.\n";
+        }
+
+         void Private_Impl_Still::commitAWB_RB() {
+           MMAL_PARAMETER_AWB_GAINS_T param = {{MMAL_PARAMETER_CUSTOM_AWB_GAINS,sizeof(param)}, {0,0}, {0,0}};
+           param.r_gain.num = (unsigned int)(100 * awbg_red);
+           param.b_gain.num = (unsigned int)(100 * awbg_blue);
+           param.r_gain.den = param.b_gain.den = 100;
+           if ( mmal_port_parameter_set(camera->control, &param.hdr) != MMAL_SUCCESS )
+                cout << __func__ << ": Failed to set AWBG gains parameter.\n";
         }
 
         void Private_Impl_Still::commitImageEffect() {
@@ -845,7 +889,11 @@ namespace raspicam {
                 return MMAL_PARAM_IMAGEFX_COLOURBALANCE;
             case RASPICAM_IMAGE_EFFECT_CARTOON:
                 return MMAL_PARAM_IMAGEFX_CARTOON;
+            default:
+                cout << API_NAME << ": Could not convert given value to image effect, returned MMAL_PARAM_IMAGEFX_NONE.\n";
+                return MMAL_PARAM_IMAGEFX_NONE;
             }
+            
         }
         
         //Returns an id of the camera. We assume the camera id is the one of the raspberry

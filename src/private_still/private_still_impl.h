@@ -65,6 +65,9 @@ namespace raspicam {
             unsigned int rotation; // 0 to 359
             unsigned int brightness; // 0 to 100
             unsigned int quality; // 0 to 100
+            unsigned int shutterSpeed;
+            float awbg_red;
+            float awbg_blue;
             int iso;
             int sharpness; // -100 to 100
             int contrast; // -100 to 100
@@ -91,6 +94,8 @@ namespace raspicam {
             void commitContrast();
             void commitSaturation();
             void commitExposure();
+            void commitShutterSpeed();
+            void commitAWB_RB();
             void commitAWB();
             void commitImageEffect();
             void commitMetering();
@@ -140,7 +145,9 @@ namespace raspicam {
             void setSaturation ( int saturation );
             void setEncoding ( RASPICAM_ENCODING encoding );
             void setExposure ( RASPICAM_EXPOSURE exposure );
+            void setShutterSpeed ( unsigned int shutter );
             void setAWB ( RASPICAM_AWB awb );
+            void setAWB_RB ( float red, float blue );
             void setImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect );
             void setMetering ( RASPICAM_METERING metering );
             void setHorizontalFlip ( bool hFlip );
@@ -157,7 +164,10 @@ namespace raspicam {
             int getSaturation();
             RASPICAM_ENCODING getEncoding();
             RASPICAM_EXPOSURE getExposure();
+            unsigned int getShutterSpeed();
             RASPICAM_AWB getAWB();
+            float getAWBG_red();
+            float getAWBG_blue();
             RASPICAM_IMAGE_EFFECT getImageEffect();
             RASPICAM_METERING getMetering();
             bool isHorizontallyFlipped();
