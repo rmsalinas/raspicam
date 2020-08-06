@@ -71,6 +71,7 @@ namespace raspicam {
             State.framerate 		= 30;
             State.width 			= 1280;      // use a multiple of 320 (640, 1280)
             State.height 			= 960;		// use a multiple of 240 (480, 960)
+            State.sensormode = 0;
             State.sharpness = 0;
             State.contrast = 0;
             State.brightness = 50;
@@ -269,6 +270,14 @@ namespace raspicam {
             if ( !camera->output_num ) {
                 cerr<< ( "Camera doesn't have output ports" );
                 mmal_component_destroy ( camera );
+                return 0;
+            }
+
+            status = mmal_port_parameter_set_uint32(camera->control, MMAL_PARAMETER_CAMERA_CUSTOM_SENSOR_CONFIG, state->sensormode);
+            
+            if (status != MMAL_SUCCESS)
+            {
+                cerr<< ( "Could not set sensor mode : error " ) << status;
                 return 0;
             }
 
@@ -534,6 +543,9 @@ namespace raspicam {
 
         void Private_Impl::setHeight ( unsigned int height ) {
             State.height = height;
+        }
+        void Private_Impl::setSensorMode( int mode ) {
+            State.sensormode = mode;
         }
         void Private_Impl::setFormat ( RASPICAM_FORMAT fmt ) {
             if ( isOpened() ) {

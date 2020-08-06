@@ -101,6 +101,9 @@ namespace raspicam {
         /**Sets camera Height. Use a multiple of 240 (480, 960)
          */
         void setHeight ( unsigned int height );
+
+        void setSensorMode( int mode );
+
         void setCaptureSize ( unsigned int width, unsigned int height );
         /** Set image brightness [0,100]
          */

@@ -81,6 +81,9 @@ namespace raspicam {
     void RaspiCam::setHeight ( unsigned int height ) {
         _impl->setHeight ( height );
     }
+    void RaspiCam::setSensorMode( int mode ) {
+        _impl->setSensorMode ( mode );
+    }
     void RaspiCam::setCaptureSize ( unsigned int width, unsigned int height ) {
         _impl->setCaptureSize ( width,height );
     }
