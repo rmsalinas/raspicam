@@ -77,7 +77,7 @@ namespace raspicam {
                 ThreadCondition Thcond;
                 bool wantToGrab;
                 membuf<unsigned char> _buffData;
-
+                int64_t timestamp;
             };
 
             public:
@@ -112,6 +112,7 @@ namespace raspicam {
             * You can use getFormat to know the current format
              */
             void retrieve ( unsigned char *data,RASPICAM_FORMAT type=RASPICAM_FORMAT_IGNORE );
+            void retrieve ( int64_t *timestamp, unsigned char *data,RASPICAM_FORMAT type=RASPICAM_FORMAT_IGNORE );
             /**Alternative to retrieve. Returns a pointer to the original image data buffer.
               * Be careful, if you call grab(), this will be rewritten with the new data
              */
@@ -120,7 +121,11 @@ namespace raspicam {
              * Returns the size of the buffer returned in getImagePtr. If is like calling getImageTypeSize(getFormat()). Just for dummies :P
              */
             size_t getImageBufferSize() const;
-
+            /**
+            * Returns the timestamp of the image that is in the current internal buffer
+            */
+            int64_t getTimeStamp() const;
+            
             /** Stops camera and free resources
             */
             void release();
@@ -141,7 +146,8 @@ namespace raspicam {
             void setExposureCompensation ( int val ); //-10,10
             void setAWB ( RASPICAM_AWB awb );
             void setAWB_RB ( float red,float blue );//ranges [0,1]
-            void  setFrameRate ( unsigned int frame_rate ) ;
+            void setFrameRate ( unsigned int frame_rate );
+            void setTimestampMode(RASPICAM_TIMESTAMP_MODE tsMode);
 
             void setImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect );
             void setMetering ( RASPICAM_METERING metering );
@@ -203,6 +209,10 @@ namespace raspicam {
             {
                 return State.rpc_awbMode;
             }
+            RASPICAM_TIMESTAMP_MODE getTimestampMode() const
+            {
+                return State.ptc_tsMode;
+            }
 
             float getAWBG_red(){return State.awbg_red;}
 
@@ -263,11 +273,12 @@ namespace raspicam {
             MMAL_PARAM_AWBMODE_T  convertAWB ( RASPICAM_AWB awb ) ;
             MMAL_PARAM_IMAGEFX_T convertImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect ) ;
             MMAL_PARAM_EXPOSUREMETERINGMODE_T convertMetering ( RASPICAM_METERING metering ) ;
+            MMAL_PARAMETER_CAMERA_CONFIG_TIMESTAMP_MODE_T convertTimestampMode ( RASPICAM_TIMESTAMP_MODE tsMode );
             int convertFormat ( RASPICAM_FORMAT fmt ) ;
 
 
             //Color conversion
-	    void convertBGR2RGB(unsigned char *  in_bgr,unsigned char *  out_rgb,int size);
+        void convertBGR2RGB(unsigned char *  in_bgr,unsigned char *  out_rgb,int size);
             float VIDEO_FRAME_RATE_NUM;
             RASPIVID_STATE State;
             MMAL_STATUS_T status;
