@@ -100,8 +100,14 @@ namespace raspicam {
     void RaspiCam_Still::setExposure ( RASPICAM_EXPOSURE exposure ) {
         _impl->setExposure ( exposure );
     }
+    void RaspiCam_Still::setShutterSpeed(unsigned int ss) {
+        _impl->setShutterSpeed(ss);
+    }
     void RaspiCam_Still::setAWB ( RASPICAM_AWB awb ) {
         _impl->setAWB ( awb );
+    }
+    void RaspiCam_Still::setAWB_RB(float red_g, float blue_g) {
+        _impl->setAWB_RB(red_g, blue_g);
     }
     void RaspiCam_Still::setImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect ) {
         _impl-> setImageEffect ( imageEffect );
