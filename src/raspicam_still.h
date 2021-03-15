@@ -82,7 +82,9 @@ namespace raspicam {
         void setSaturation ( int saturation );
         void setEncoding ( RASPICAM_ENCODING encoding );
         void setExposure ( RASPICAM_EXPOSURE exposure );
+	void setShutterSpeed(unsigned int ss)
         void setAWB ( RASPICAM_AWB awb );
+	void setAWB_RB(float red_g, float blue_g);
         void setImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect );
         void setMetering ( RASPICAM_METERING metering );
         void setHorizontalFlip ( bool hFlip );
