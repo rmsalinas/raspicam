@@ -546,8 +546,9 @@ namespace raspicam {
         }
 
         void Private_Impl_Still::setShutterSpeed ( unsigned int shutter ) {
-            if ( shutter > 30000 )
-                shutter = 30000;
+            // TODO : Verify the highest value, currently based on video implementation for now
+            if ( shutter > 330000 )
+                shutter = 330000;
             this->shutterSpeed= shutter;
             changedSettings = true;
         }

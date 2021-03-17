@@ -176,7 +176,7 @@ namespace raspicam {
             _impl->setISO ( Scaler::scale ( 0,100,0,800, value ) );
             break;
         case CV_CAP_PROP_EXPOSURE :
-            if ( value>0 && value<=30000 ) {
+            if ( value > 0 ) {
                 if( _impl->getExposure () != RASPICAM_EXPOSURE_OFF ) {
                     _impl->setExposure ( RASPICAM_EXPOSURE_OFF );
                 }
