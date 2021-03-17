@@ -100,8 +100,24 @@ namespace raspicam {
     void RaspiCam_Still::setExposure ( RASPICAM_EXPOSURE exposure ) {
         _impl->setExposure ( exposure );
     }
+    void RaspiCam_Still::setShutterSpeed(unsigned int ss) {
+        if (ss > 0) {
+            if (_impl->getExposure() != RASPICAM_EXPOSURE_OFF)
+            {
+                _impl->setExposure(RASPICAM_EXPOSURE_OFF);
+            }
+            _impl->setShutterSpeed(ss);
+        }
+        else {
+            _impl->setExposure(RASPICAM_EXPOSURE_AUTO);
+            _impl->setShutterSpeed(0);
+        }
+    }
     void RaspiCam_Still::setAWB ( RASPICAM_AWB awb ) {
         _impl->setAWB ( awb );
+    }
+    void RaspiCam_Still::setAWB_RB(float r, float b) {
+        _impl->setAWB_RB( r, b );
     }
     void RaspiCam_Still::setImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect ) {
         _impl-> setImageEffect ( imageEffect );
@@ -146,11 +162,23 @@ namespace raspicam {
     RASPICAM_ENCODING RaspiCam_Still::getEncoding() {
         return _impl->getEncoding();
     }
-    RASPICAM_EXPOSURE RaspiCam_Still::getExposure() {
+    unsigned int RaspiCam_Still::getShutterSpeed() const {
+        if ( _impl->getShutterSpeed() == 0 )
+            return _impl->getExposure();
+        else
+            return _impl->getShutterSpeed();  
+    }
+    RASPICAM_EXPOSURE RaspiCam_Still::getExposure() const {
         return _impl->getExposure ();
     }
-    RASPICAM_AWB RaspiCam_Still::getAWB() {
+    RASPICAM_AWB RaspiCam_Still::getAWB() const {
         return _impl->getAWB();
+    }
+    float RaspiCam_Still::getAWBG_red() const {
+        return _impl->getAWBG_red();
+    }
+    float RaspiCam_Still::getAWBG_blue() const {
+        return _impl->getAWBG_blue();
     }
     RASPICAM_IMAGE_EFFECT RaspiCam_Still::getImageEffect() {
         return _impl->getImageEffect();

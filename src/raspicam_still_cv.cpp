@@ -116,10 +116,16 @@ namespace raspicam {
         case CV_CAP_PROP_GAIN :
             return  Scaler::scale ( 0,800,0,100, _impl->getISO() );
         case CV_CAP_PROP_EXPOSURE :
-//             if ( _impl->getShutterSpeed() ==0 )
-            return -1;//not yet
-//             else return Scaler::scale (0,330000, 0,100, _impl->getShutterSpeed() )  ;
-            break;
+            if ( _impl->getShutterSpeed() ==0 )
+                return _impl->getExposure();
+            else
+                return _impl->getShutterSpeed();
+        case CAP_PROP_AUTO_WB :
+            return _impl->getAWB();
+        case CV_CAP_PROP_WHITE_BALANCE_RED_V:
+            return _impl->getAWBG_red();
+        case CV_CAP_PROP_WHITE_BALANCE_BLUE_U:
+            return _impl->getAWBG_blue();
         case CV_CAP_PROP_CONVERT_RGB :
             return ( true );
 //     case CV_CAP_PROP_WHITE_BALANCE :return _cam_impl->getAWB();
@@ -170,15 +176,48 @@ namespace raspicam {
             _impl->setISO ( Scaler::scale ( 0,100,0,800, value ) );
             break;
         case CV_CAP_PROP_EXPOSURE :
-//             if ( value>0 && value<=100 ) {
-//                 _impl->setShutterSpeed ( Scaler::scale ( 0,100,0,330000, value ) );
-//             } else {
-//                 _impl->setExposure ( RASPICAM_EXPOSURE_AUTO );
-//                 _impl->setShutterSpeed ( 0 );
-//             }
+            if ( value > 0 ) {
+                if( _impl->getExposure () != RASPICAM_EXPOSURE_OFF ) {
+                    _impl->setExposure ( RASPICAM_EXPOSURE_OFF );
+                }
+                _impl->setShutterSpeed ( value );
+            } else {
+                _impl->setExposure ( RASPICAM_EXPOSURE_AUTO );
+                _impl->setShutterSpeed ( 0 );
+            }
             break;
         case CV_CAP_PROP_CONVERT_RGB :
 //              CV_8UC3;
+            break;
+
+        case CAP_PROP_AUTO_WB:
+            if ( value>0 && value<=9 ) {
+                _impl->setAWB(raspicam::RASPICAM_AWB(value));
+            }
+            else  {
+                _impl->setAWB(raspicam::RASPICAM_AWB_AUTO);
+            };
+            break;
+        case CV_CAP_PROP_WHITE_BALANCE_RED_V:
+            if ( value>0 && value<=8 ) {
+                float valblue=_impl->getAWBG_blue();
+                _impl->setAWB(raspicam::RASPICAM_AWB_OFF);
+                _impl->setAWB_RB(value, valblue );
+            }
+            else  {
+                _impl->setAWB(raspicam::RASPICAM_AWB_AUTO);
+            };
+            break;
+
+        case CV_CAP_PROP_WHITE_BALANCE_BLUE_U:
+            if ( value>0 && value<=8 ) {
+                float valred=_impl->getAWBG_red();
+                _impl->setAWB(raspicam::RASPICAM_AWB_OFF);
+                _impl->setAWB_RB(valred, value );
+            }
+            else  {
+                _impl->setAWB(raspicam::RASPICAM_AWB_AUTO);
+            };
             break;
 //     case CV_CAP_PROP_WHITE_BALANCE :return _cam_impl->getAWB();
         default :
