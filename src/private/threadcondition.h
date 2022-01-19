@@ -54,14 +54,14 @@ namespace raspicam {
         class ThreadCondition
         {
             public:
-            ThreadCondition() throw ( raspicam::Exception );
+            ThreadCondition()  ;
 
             /**The thread that call this function waits untils the condition is activated */
-            void Wait(std::unique_lock<std::mutex>& lck) throw ( raspicam::Exception );
+            void Wait(std::unique_lock<std::mutex>& lck) ;
 
  
             /**Wake up all threads waiting for this condition */
-            void BroadCast() throw ( raspicam::Exception );
+            void BroadCast() ;
 
             private:
             std::mutex mtx;

@@ -631,7 +631,7 @@ namespace raspicam {
 
         void Private_Impl_Still::commitBrightness() {
             mmal_port_parameter_set_rational ( camera->control, MMAL_PARAMETER_BRIGHTNESS, ( MMAL_RATIONAL_T ) {
-                brightness, 100
+               int32_t(brightness) , 100
             } );
         }
 
@@ -845,6 +845,7 @@ namespace raspicam {
                 return MMAL_PARAM_IMAGEFX_COLOURBALANCE;
             case RASPICAM_IMAGE_EFFECT_CARTOON:
                 return MMAL_PARAM_IMAGEFX_CARTOON;
+            default: return MMAL_PARAM_IMAGEFX_NONE;
             }
         }
         
