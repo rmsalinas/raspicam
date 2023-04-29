@@ -127,6 +127,13 @@ namespace raspicam {
         RASPICAM_ENCODING_RGB
     } RASPICAM_ENCODING;
 
+    typedef enum RASPICAM_TIMESTAMP_MODE {
+        RASPICAM_TIMESTAMP_MODE_ZERO,        /* Always timestamp frames as 0 */
+        RASPICAM_TIMESTAMP_MODE_RAW_STC,     /* Use the raw STC value for the frame timestamp */
+        RASPICAM_TIMESTAMP_MODE_RESET_STC,   /* Use the STC timestamp but subtract the timestamp
+                                         * of the first frame sent to give a zero based timestamp.                                    */
+    } RASPICAM_TIMESTAMP_MODE;
+
 };
 #endif
 

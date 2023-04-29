@@ -77,6 +77,7 @@ namespace raspicam {
             * You can use getFormat() to know the current format
           */
         void retrieve ( unsigned char *data,RASPICAM_FORMAT type=RASPICAM_FORMAT_IGNORE );
+        void retrieve ( int64_t *timestamp, unsigned char *data,RASPICAM_FORMAT type=RASPICAM_FORMAT_IGNORE );
         /**Alternative to retrieve. Returns a pointer to the original image data buffer (which is in getFormat() format).
           *
           * Be careful, if you call grab(), this will be rewritten with the new data
@@ -86,6 +87,10 @@ namespace raspicam {
          * Returns the size of the images captured.
          */
         size_t getImageBufferSize() const;
+        /**
+         * Returns the timestamp of the image that is in the current internal buffer
+         */
+        int64_t getTimeStamp() const;
 
 
         /** Stops camera and free resources
@@ -139,6 +144,8 @@ namespace raspicam {
         void setHorizontalFlip ( bool hFlip );
         void setVerticalFlip ( bool vFlip );
         void setFrameRate(unsigned int fr);
+        void setTimestampMode(RASPICAM_TIMESTAMP_MODE tsMode);
+
         //Accessors
         RASPICAM_FORMAT getFormat() const;
         unsigned int getWidth() const;
@@ -158,7 +165,8 @@ namespace raspicam {
         RASPICAM_METERING getMetering() const;
         bool isHorizontallyFlipped() const ;
         bool isVerticallyFlipped() const ;
-        unsigned int  getFrameRate()const;
+        unsigned int  getFrameRate() const;
+        RASPICAM_TIMESTAMP_MODE getTimestampMode() const;
 
         /** Returns an id of the camera. We assume the camera id is the one of the raspberry
         *the id is obtained using raspberry serial number obtained in /proc/cpuinfo

@@ -68,9 +68,9 @@ namespace raspicam {
 
             // Default everything to zero
             memset ( &State, 0, sizeof ( RASPIVID_STATE ) );
-            State.framerate 		= 30;
-            State.width 			= 1280;      // use a multiple of 320 (640, 1280)
-            State.height 			= 960;		// use a multiple of 240 (480, 960)
+            State.framerate         = 30;
+            State.width             = 1280;      // use a multiple of 320 (640, 1280)
+            State.height             = 960;        // use a multiple of 240 (480, 960)
             State.sharpness = 0;
             State.contrast = 0;
             State.brightness = 50;
@@ -93,6 +93,7 @@ namespace raspicam {
             State.shutterSpeed=0;//auto
             State.awbg_red=1.0;
             State.awbg_blue=1.0;
+            State.ptc_tsMode = RASPICAM_TIMESTAMP_MODE_RAW_STC;
 
         }
         bool  Private_Impl::open ( bool StartCapture ) {
@@ -173,7 +174,12 @@ namespace raspicam {
         /**
         *
          */
-        void Private_Impl::retrieve ( unsigned char *data,RASPICAM_FORMAT type ) {
+        void Private_Impl::retrieve ( unsigned char *data, RASPICAM_FORMAT type ) {
+            int64_t ts;
+            retrieve(&ts, data, type);
+        }
+        void Private_Impl::retrieve ( int64_t *timestamp, unsigned char *data, RASPICAM_FORMAT type ) {
+            (*timestamp) = 0;
             if ( callback_data._buffData.size==0 ) return;
             if ( type!=RASPICAM_FORMAT_IGNORE ) {
                 cerr<<__FILE__<<":"<<__LINE__<<" :Private_Impl::retrieve type is not RASPICAM_FORMAT_IGNORE as it should be"<<endl;
@@ -202,12 +208,18 @@ namespace raspicam {
                     imagePtr+=format->es->video.width*3;//line stride
                 }
             }
-
+            (*timestamp) = callback_data.timestamp;
         }
 
 
         unsigned char *Private_Impl::getImageBufferData() const{
             return callback_data._buffData.data;
+        }
+        /**
+        * Returns the timestamp of the image that is in the current internal buffer
+        */
+        int64_t Private_Impl::getTimeStamp() const {
+            return callback_data.timestamp;
         }
 
         size_t Private_Impl::getImageBufferSize() const{
@@ -288,7 +300,7 @@ namespace raspicam {
             cam_config.num_preview_video_frames = 3;
             cam_config.stills_capture_circular_buffer_height = 0;
             cam_config.fast_preview_resume = 0;
-            cam_config.use_stc_timestamp = MMAL_PARAM_TIMESTAMP_MODE_RESET_STC;
+            cam_config.use_stc_timestamp = convertTimestampMode(state->ptc_tsMode);
             mmal_port_parameter_set ( camera->control, &cam_config.hdr );
 
             // Set the encode format on the video  port
@@ -500,6 +512,7 @@ namespace raspicam {
                     memcpy ( pData->_buffData.data,buffer->data,buffer->length );
                     pData->wantToGrab =false;
                     hasGrabbed=true;
+                    pData->timestamp = buffer->pts;
                     mmal_buffer_header_mem_unlock ( buffer );
                 }
             }
@@ -720,6 +733,19 @@ namespace raspicam {
                 return MMAL_PARAM_AWBMODE_AUTO;
             }
         }
+        MMAL_PARAMETER_CAMERA_CONFIG_TIMESTAMP_MODE_T Private_Impl::convertTimestampMode ( RASPICAM_TIMESTAMP_MODE tsMode )
+        {
+            switch(tsMode) {
+                case RASPICAM_TIMESTAMP_MODE_ZERO:
+                    return MMAL_PARAM_TIMESTAMP_MODE_ZERO;
+                case RASPICAM_TIMESTAMP_MODE_RAW_STC:
+                    return MMAL_PARAM_TIMESTAMP_MODE_RAW_STC;
+                case RASPICAM_TIMESTAMP_MODE_RESET_STC:
+                    return MMAL_PARAM_TIMESTAMP_MODE_RESET_STC;
+                default:
+                    return MMAL_PARAM_TIMESTAMP_MODE_RAW_STC;
+            }
+        }
 
         MMAL_PARAM_IMAGEFX_T Private_Impl::convertImageEffect ( RASPICAM_IMAGE_EFFECT imageEffect ) {
             switch ( imageEffect ) {
@@ -770,6 +796,11 @@ namespace raspicam {
 
         void Private_Impl::setFrameRate ( unsigned int frame_rate ) {
             State.framerate = frame_rate;
+        }
+        
+        void Private_Impl::setTimestampMode(RASPICAM_TIMESTAMP_MODE tsMode)
+        {
+            State.ptc_tsMode = tsMode;
         }
 
         int Private_Impl::convertFormat ( RASPICAM_FORMAT fmt ) {

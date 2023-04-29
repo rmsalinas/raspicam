@@ -63,8 +63,12 @@ namespace raspicam {
     void RaspiCam::retrieve ( unsigned char *data,RASPICAM_FORMAT type ) {
         _impl->retrieve ( data,type );
     }
+    void RaspiCam::retrieve ( int64_t *timestamp, unsigned char *data,RASPICAM_FORMAT type ) {
+        _impl->retrieve ( timestamp,data,type );
+    }
     unsigned char *RaspiCam::getImageBufferData() const{return _impl->getImageBufferData();}
     size_t RaspiCam::getImageBufferSize() const{return _impl->getImageBufferSize();}
+    int64_t RaspiCam::getTimeStamp() const { return _impl->getTimeStamp();}
 
     size_t RaspiCam::getImageTypeSize ( RASPICAM_FORMAT type ) const{return _impl->getImageTypeSize ( type );}
 
@@ -134,7 +138,12 @@ namespace raspicam {
     void RaspiCam::setVerticalFlip ( bool vFlip ) {
         _impl->setVerticalFlip ( vFlip );
     }
-   void RaspiCam::setFrameRate( unsigned int  fr) {  _impl->setFrameRate(fr);}
+    void RaspiCam::setFrameRate( unsigned int  fr) {  
+        _impl->setFrameRate(fr);
+    }
+    void RaspiCam::setTimestampMode(RASPICAM_TIMESTAMP_MODE tsMode) {
+        _impl->setTimestampMode(tsMode);
+    };
 
     
     RASPICAM_FORMAT RaspiCam::getFormat()const{return _impl->getFormat( ); }
@@ -145,6 +154,10 @@ namespace raspicam {
     int RaspiCam::getISO() const{return _impl->getISO() ;}
     unsigned int RaspiCam::getShutterSpeed() const{return _impl->getShutterSpeed();}//return _impl->getShutterSpeed();}
     unsigned int  RaspiCam::getFrameRate()const{return _impl->getFrameRate();}
+    RASPICAM_TIMESTAMP_MODE RaspiCam::getTimestampMode() const {
+        return _impl->getTimestampMode();
+    }
+    
 
     int RaspiCam::getSharpness() const{return _impl->getSharpness() ;}
     int RaspiCam::getContrast() const{return _impl->getContrast() ;}

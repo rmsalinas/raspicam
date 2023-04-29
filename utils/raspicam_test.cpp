@@ -201,6 +201,7 @@ int main ( int argc,char **argv ) {
     }
     cout<<"Connected to camera ="<<Camera.getId() <<" bufs="<<Camera.getImageBufferSize( )<<endl;
     unsigned char *data=new unsigned char[  Camera.getImageBufferSize( )];
+    int64_t timestamp=0;
     Timer timer;
 
 
@@ -209,9 +210,12 @@ int main ( int argc,char **argv ) {
     timer.start();
     do{
         Camera.grab();
-        Camera.retrieve ( data );
+        Camera.retrieve ( &timestamp, data );
         if ( !doTestSpeedOnly ) {
-            if ( i%5==0 ) 	  cout<<"\r capturing ..."<<i<<"/"<<nFramesCaptured<<std::flush;
+            if ( i%5==0 ) {
+                cout<<"\r capturing ..."<<i<<"/"<<nFramesCaptured
+                    << " at pts(us): " << timestamp << " " << std::flush;
+            }
             if ( i%30==0 && i!=0  && nFramesCaptured>0 ) { //save image if not in inifite loop
                 std::stringstream fn;
                 fn<<"image";

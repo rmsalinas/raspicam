@@ -72,11 +72,12 @@ namespace raspicam {
             bool videoStabilisation;    /// 0 or 1 (false or true)
             int exposureCompensation;  /// -10 to +10 ?
             int shutterSpeed;
-	    RASPICAM_FORMAT captureFtm;
+            RASPICAM_FORMAT captureFtm;
             RASPICAM_EXPOSURE rpc_exposureMode;
             RASPICAM_METERING rpc_exposureMeterMode;
             RASPICAM_AWB rpc_awbMode;
             RASPICAM_IMAGE_EFFECT rpc_imageEffect;
+            RASPICAM_TIMESTAMP_MODE ptc_tsMode;
             MMAL_PARAMETER_IMAGEFX_PARAMETERS_T imageEffectsParameters;
             MMAL_PARAM_COLOURFX_T colourEffects;
             int rotation;              /// 0-359
