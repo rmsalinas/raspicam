@@ -1,7 +1,8 @@
 
 This library allows to use the Raspberry Pi Camera. 
 
-* Main features:
+**Main features:**
+
  - Provides  class RaspiCam for easy and full control of the camera
  - Provides class  RaspiCam_Cv for easy control of the camera with OpenCV.
  - Provides class  RaspiCam_Still and RaspiCam_Still_Cv for controlling the camera in still mode
@@ -11,63 +12,79 @@ This library allows to use the Raspberry Pi Camera.
 
 
 
-Thanks To
- -Tom Low <sebaffle@gmail.com> : for his contribution in version 0.1.5
+**Thanks To**
 
-* ChangeLog
+ - Tom Low <sebaffle@gmail.com> : for his contribution in version 0.1.5
+
+**ChangeLog**
+
 0.1.5
   - corrected the behaviour of CV_CAP_PROP_WHITE_BALANCE_RED_V and CV_CAP_PROP_WHITE_BALANCE_BLUE_U in raspicam_cv
+
 0.1.4
   - Updates to latest version of the controllers. Bug corrected with BGR RGB swapping
   - Added set/getFrameRates in raspicam and raspicam_cv
   - Added rotation capabilities in raspicam_cv via  set(CV_CAP_PROP_ROLL,val)
+
 0.1.3
-    - Native support for BGR and RGB in opencv classes. No need to do conversion anymore.
+  - Native support for BGR and RGB in opencv classes. No need to do conversion anymore.
+
 0.1.2
   - Solved deadlock error in grab
+
 0.1.1
   - Moved to c++11  mutex  and condition_variables. Bug fixed that caused random dead lock condition in grab()
+
 0.1.0
   - Bug fixed in release for RapiCam and RaspiCam_Cv
+
 0.0.7
   - Added classes  RaspiCam_Still and RaspiCam_Still_Cv for still camera mode
+
 0.0.6
   - Bug ins cv camera corrected
+
 0.0.5 
   - getImageBuffeSize change by getImageBufferSize (sorry)
   - Change in capture format. Now, it is able to capture in RGB at high speed. 
   - The second parameter of retrieve is now useless. Format must be specified in Raspicam::(set/get)Format before opening the camera and can not be change during operation.
   - RaspiCam_Cv captures in BGR, which is obtained by converting from RGB. Therefore,  performance drops to half repect to the RaspiCam in RGB mode when using 1280x960.
+
 0.0.4
   - Added shutter speed camera control
   - OpenCv set/get params are now scaled to [0,100]
   - Added more command line options in test programs
+
 0.0.3
   - Fixed error in color conversion (rgb and bgr were swapped)
   - Added command line options in raspicam_test to adjust exposure
   - Changes in RaspiCam_Cv so that exposure can be adjusted. Very simply.
+
 0.0.2
  - Decoupled opening from the start of capture in RaspiCam if desired. RapiCam::open and RaspiCam::startCapture
  - Added  function RaspiCam::getId and RaspiCam_Cv::getId
  - Added a new way to convert yuv2rgb which is a bit faster.Thanks to Stefan Gufman (gruffypuffy at gmail dot com)
  - Added command line option -test_speed to utils programs (do not save images to memory)
  - Removed useless code in private_impl
- 
+
 0.0.1
-Initial libary
+ - Initial library
 
-
-* Compiling
+**Compiling**
 
 Download the file to your raspberry. Then, uncompress the file and compile
 
+```bash
 tar xvzf raspicamxx.tgz
 cd raspicamxx
 mkdir build
 cd build
 cmake ..
+```
 
 At this point you'll see something like 
+
+```
 -- CREATE OPENCV MODULE=1
 -- CMAKE_INSTALL_PREFIX=/usr/local
 -- REQUIRED_LIBRARIES=/opt/vc/lib/libmmal_core.so;/opt/vc/lib/libmmal_util.so;/opt/vc/lib/libmmal.so
@@ -76,15 +93,18 @@ At this point you'll see something like
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/pi/raspicam/trunk/build
+```
 
 If OpenCV development files are installed in your system, then  you see
 -- CREATE OPENCV MODULE=1
 otherwise this option will be 0 and the opencv module of the library will not be compiled.
 
 Finally compile and install
+
+```bash
 make
 sudo make install
-
+```
 
 After that, you have the programs raspicam_test  and raspicam_cv_test (if opencv was enabled).
 Run the first program to check that compilation is ok.
@@ -92,12 +112,13 @@ Run the first program to check that compilation is ok.
 You can check that the library has installed the header files under /usr/local/lib/raspicam , and the libraries in
 /usr/local/lib/libraspicam.so and /usr/local/lib/libraspicam_cv.so (if opencv support enabled)
 
-* Using it in your projects
+** Using it in your projects **
 
 We provide a simple example to use the library. Create a directory for our own project. 
 
 First create a file with the name simpletest_raspicam.cpp and add the following code
 
+```c
 /**
 */
 #include <ctime>
@@ -130,8 +151,10 @@ int main ( int argc,char **argv ) {
     return 0;
 }
 //
+```
 
 Now, create a file named CMakeLists.txt and add:
+```
 #####################################
 cmake_minimum_required (VERSION 2.8) 
 project (raspicam_test)
@@ -139,17 +162,19 @@ find_package(raspicam REQUIRED)
 add_executable (simpletest_raspicam simpletest_raspicam.cpp)  
 target_link_libraries (simpletest_raspicam ${raspicam_LIBS})
 #####################################
-
+```
 Finally, create,compile and execute
+```bash
 mkdir build
 cd build
 cmake ..
 make
 ./simpletest_raspicam
+```
 
 A more complete sample project is provided in SourceForge.
 
-* OpenCV Interface
+**OpenCV Interface**
 
 If the OpenCV is found when compiling the library, the libraspicam_cv.so module is created and the RaspiCam_Cv class available.
 Take a look at the examples in utils to see how to use the class. In addition, we show here how you can use the RaspiCam_Cv in your own project using cmake.
@@ -157,13 +182,14 @@ Take a look at the examples in utils to see how to use the class. In addition, w
 
 First create a file with the name simpletest_raspicam_cv.cpp and add the following code
 
+```c
 #include <ctime>
 #include <iostream>
 #include <raspicam/raspicam_cv.h>
 using namespace std; 
 
 int main ( int argc,char **argv ) {
-   
+
     time_t timer_begin,timer_end;
     raspicam::RaspiCam_Cv Camera;
     cv::Mat image;
@@ -191,10 +217,11 @@ int main ( int argc,char **argv ) {
     cv::imwrite("raspicam_cv_image.jpg",image);
     cout<<"Image saved at raspicam_cv_image.jpg"<<endl;
 }
-
+```
 
 
 Now, create a file named CMakeLists.txt and add:
+```
 #####################################
 cmake_minimum_required (VERSION 2.8) 
 project (raspicam_test)
@@ -208,11 +235,13 @@ ELSE()
 	MESSAGE(FATAL_ERROR "OPENCV NOT FOUND IN YOUR SYSTEM")
 ENDIF()
 #####################################
-
+```
 Finally, create,compile and execute
+
+```bash
 mkdir build
 cd build
 cmake ..
 make
 ./simpletest_raspicam_cv
-
+```

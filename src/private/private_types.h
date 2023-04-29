@@ -60,6 +60,7 @@ namespace raspicam {
             int width;                          /// Requested width of image
             int height;                         /// requested height of image
             int framerate;                      /// Requested frame rate (fps)
+            int sensormode;                    /// Sensor mode. 0=auto. Check docs/forum for modes selected by other values.
             /// the camera output or the encoder output (with compression artifacts)
             MMAL_COMPONENT_T *camera_component;    /// Pointer to the camera component
             MMAL_POOL_T *video_pool; /// Pointer to the pool of buffers used by encoder output port
@@ -72,7 +73,7 @@ namespace raspicam {
             bool videoStabilisation;    /// 0 or 1 (false or true)
             int exposureCompensation;  /// -10 to +10 ?
             int shutterSpeed;
-	    RASPICAM_FORMAT captureFtm;
+            RASPICAM_FORMAT captureFtm;
             RASPICAM_EXPOSURE rpc_exposureMode;
             RASPICAM_METERING rpc_exposureMeterMode;
             RASPICAM_AWB rpc_awbMode;

@@ -129,6 +129,7 @@ namespace raspicam {
             void setFormat ( RASPICAM_FORMAT fmt );
             void setWidth ( unsigned int width ) ;
             void setHeight ( unsigned int height );
+            void setSensorMode( int mode );
             void setCaptureSize ( unsigned int width, unsigned int height );
             void setBrightness ( unsigned int brightness );
             void setRotation ( int rotation );
