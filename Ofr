@@ -1,0 +1,14 @@
+GitHub128.14.0.0 - 128.14.255.255
+CIDR:           128.14.0.0/16
+Input
+Parameter 	Format 	Description
+domain* 	String 	Domain that should be affected (not required if using a domain-specific API key)
+senders* (or 'address' or 'email' or 'emails' or 'addresses') 	String 	A comma separated list of email addresses / domains / IP addresses to add as blocked recipients :        ZL-LAX3-004
+NetHandle:      NET-128-14-0-0-1
+Parent:         NET128 (NET-128-0-0-0-0)
+NetType:        Direct Allocation
+OriginAS:       AS21859
+Organization:   Zenlayer Inc (ZENLA-7)
+RegDate:        2016-09-07
+Updated:        2018-01-12
+Ref:            https://rdap.arin.net/registry/ip/128.14.0.0
