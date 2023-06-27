@@ -1,5 +1,5 @@
 p# ===================================================================================
-#  @PROJECT_NAME@ CMake configuration file
+#  @PROJEChooogleT_NAMEl@ CMake configuration file
 #
 #             ** File generated automatically, do not modify **
 #
@@ -8,7 +8,229 @@ p# =============================================================================
 #
 #    FIND_PACKAGE(@PROJECT_NAME@ REQUIRED )
 #    TARGET_LINK_LIBRARIES(MY_TARGET_NAME ${@PROJECT_NAME@_LIBS})
-#
+#DNS records and worldwide DNS propagation checker
+
+IP WHOIS Lookup
+Enter any Valid IP Address:
+102.89.47.54
+
+Use any IPV4 / IPV6 Address or your own IP
+
+Related tools
+IP Reverse Lookup Ping IP Address Online Traceroute IP Geolocation Lookup Check IP Blacklist
+More Tools
+MAC Address Lookup
+ASN WHOIS Lookup
+DMARC Validation Tool
+IPv6 WHOIS Lookup
+SMTP Test
+QR Scanner
+Show More
+All Tools
+WHOIS Lookup ( 102.89.47.54 )
+% This is the AfriNIC Whois server.
+% The AFRINIC whois database is subject to  the following terms of Use. See https://afrinic.net/whois/terms
+
+% Note: this output has been filtered.
+%       To receive output for a database update, use the "-B" flag.
+
+% Information related to '102.88.0.0 - 102.95.255.255'
+
+% No abuse contact registered for 102.88.0.0 - 102.95.255.255
+
+inetnum:        102.88.0.0 - 102.95.255.255
+netname:        MTN-Nigeria
+descr:          MTN Nigeria
+country:        NG
+org:            ORG-MN1-AFRINIC
+admin-c:        BRM1-AFRINIC
+admin-c:        II10-AFRINIC
+admin-c:        TI13-AFRINIC
+admin-c:        CA48-AFRINIC
+tech-c:         II10-AFRINIC
+tech-c:         TI13-AFRINIC
+tech-c:         CA48-AFRINIC
+tech-c:         ISP1-AFRINIC
+status:         ALLOCATED PA
+mnt-by:         AFRINIC-HM-MNT
+mnt-lower:      MTNNIGERA1-MNT
+mnt-domains:    MTNNIGERA1-MNT
+source:         AFRINIC # Filtered
+parent:         102.0.0.0 - 102.255.255.255
+
+organisation:   ORG-MN1-AFRINIC
+org-name:       MTN Nigeria
+org-type:       LIR
+country:        NG
+address:        Yellodrome building, adeola hopewell street, Victoria island
+address:        Victoria island
+phone:          tel:+234-803-123-0141
+phone:          tel:+234-803-123-0141
+admin-c:        BRM1-AFRINIC
+admin-c:        II10-AFRINIC
+admin-c:        TI13-AFRINIC
+admin-c:        CA48-AFRINIC
+tech-c:         ISP1-AFRINIC
+tech-c:         II10-AFRINIC
+tech-c:         TI13-AFRINIC
+tech-c:         CA48-AFRINIC
+mnt-ref:        AFRINIC-HM-MNT
+mnt-ref:        MTNNIGERA1-MNT
+mnt-by:         AFRINIC-HM-MNT
+source:         AFRINIC # Filtered
+
+person:         Business Risk Management
+address:        Golden Plaza Building, Falomo roundabout, ikoyi
+phone:          +08031230141
+nic-hdl:        BRM1-AFRINIC
+abuse-mailbox:  abuse@mtnnigeria.net
+mnt-by:         GENERATED-5DN7BDIQBRY0JCMBEE6EBZSP56LLR9GU-MNT
+source:         AFRINIC # Filtered
+
+person:         Chukwuebuka Ani
+address:        Yellodrome building, adeola hopewell address: street, Victoria island
+address:        Victoria island
+address:        Nigeria
+phone:          tel:+234-803-200-0490
+nic-hdl:        CA48-AFRINIC
+source:         AFRINIC # Filtered
+mnt-by:         GENERATED-EBHBOB966K2GDPMBHLHKG9KPYWB1VW9T-MNT
+
+person:         Ikechukwu Ihemelandu
+nic-hdl:        II10-AFRINIC
+address:        Yellodrome building, adeola hopewell address: street, Victoria island
+address:        Victoria island
+address:        Nigeria
+address:        Lagos
+address:        Other
+phone:          tel:+234-803-000-0000
+mnt-by:         GENERATED-NPAJIOXFZ8YOOLS84T4Z7GUBGVM89VGS-MNT
+source:         AFRINIC # Filtered
+
+person:         Internet Services Planning
+nic-hdl:        ISP1-AFRINIC
+address:        Yellodrome building, adeola hopewell street, Victoria island
+address:        Lagos
+address:        Other
+phone:          tel:+234-803-123-0141
+mnt-by:         MTNNIGERA1-MNT
+source:         AFRINIC # Filtered
+
+person:         Taiwo Ikugbonmire
+nic-hdl:        TI13-AFRINIC
+address:        Yellodrome building, adeola hopewell address: street, Victoria island
+address:        Victoria island
+address:        Nigeria
+address:        Lagos
+address:        Other
+phone:          tel:+234-803-200-284
+mnt-by:         GENERATED-OTDTXORXHN6F82OVDX2NEJDCXAME7BSN-MNT
+source:         AFRINIC # Filtered
+
+% Information related to '102.89.47.0/24AS29465'
+
+route:          102.89.47.0/24
+origin:         AS29465
+descr:          MTN NIGERIA PREFIX
+mnt-by:         MTNNIGERA1-MNT
+source:         AFRINIC # Filtered
+
+
+
+IP WHOIS - Check Who Owns an IP Address
+IP WHOIS Lookup goes for WHOIS IP information. Get IP address WHOIS information. The information includes owner details, including their name, company, organization, or individual who owns that IP address.
+
+IP WHOIS Lookup Tool
+Go for IP WHOIS Lookup using WHOIS protocol for any allocated IP address.
+
+The IP WHOIS information contains
+
+The contact information of the IP address
+The Regional Internet Registry (RIR); assigns that IP address.
+The autonomous system (AS) numbers.
+The designated owner, location, contact information, and abuse reporting details.
+The number of IP addresses in the block or blocks assigned to the IP owner you are researching.
+How can the IP WHOIS information of any IP address be found using the IP WHOIS Lookup tool?
+To find the WHOIS information of a particular IP address. Perform the following steps.
+
+Open the IP WHOIS Lookup tool.
+Enter a valid IPv4 or IPv6 in the "Enter any Valid IP Address" section.
+After entering the IP address, click the "Lookup IP" button.
+The tool performs the IP WHOIS lookup and provides the WHOIS IP info of that particular IP address.
+IP WHOIS Results
+You will get the IP address owner's contact information from the IP WHOIS results. You will most likely get the Internet Service Provider (ISP) information to whom the IP address is assigned. If someone tries to spam or hack you, it's best to dig out the abusive information in the results. Otherwise, using the non-abuse contact information will be your best option to reach the controlling party.
+
+Can I see the WHOIS details of the end user?
+The WHOIS IP results provide the organization or individual's name against which the IP is registered in the IP WHOIS Database. Frequently it's an internet service provider (ISP). However, it's impossible to get the end-user information to whom the ISP assigns the IP. Only ISP has the original and exact details of its end user. You can get it if the court directs the ISP to provide the end-users name, address, and contact information.
+
+What is IP address ownership?
+Someone somewhere owns an IP address that is in use on the internet. An Internet Assigned Numbers Authority (IANA) is responsible worldwide for managing the allocation of IP addresses. The organization is responsible for reporting the information, for example, IP address, root zone management in DNS, ASNs allocation, and other Internet numbers and Internet Protocol-related symbols.
+
+The Internet Assigned Numbers Authority further assigns Internet number resources (IP addresses and AS numbers) to regional internet registries (RIRs). These registries are responsible for allocating and registering Internet number resources within a specific region of the globe.
+
+Each RIR has its regional rules and policies and follows those to assign the IP addresses and AS numbers to their customers, including ISPs and end-user organizations.
+
+Every IP address that floats on the global public internet is administrated by one of the five RIRs, each working within a specific region of the globe. The RIRs and their regulatory areas are as follows.
+
+African Network Information Centre (AfriNIC) Manages IP addresses for the African continent.
+American Registry for Internet Numbers (ARIN) Manages IP addresses for the United States, Canada, and many Caribbean and North Atlantic islands.
+Asia-Pacific Network Information Centre (APNIC) Manages IP addresses for Asia, Australia, and surrounding Countries.
+Latin America and Caribbean Network Information Centre (LACNIC) Manages IP addresses for Latin America and the Caribbean.
+Réseaux IP Européens Network Coordination Centre (RIPE NCC) Manages IP addresses for Europe, the Middle East, and the former USSR.
+Note: Suppose an RIR assigns a block of IP addresses to one of its ISP in the United States. The same ISP further assigns a sub-block of those IP addresses to one of their customer in Canada. The IP address's location still is reported as being in the United States.
+
+However, for more accurate geolocation data and to get IP's location from several geolocation databases, you may use the IP Locator.
+
+DNS CHECK TOOLS
+DNS Checker
+Complete DNS Health Report
+Reverse IP Lookup
+DNS Lookup
+NS Lookup
+MX Lookup
+PRODUCTIVITY
+Binary Translator
+Reverse Image Search
+Credit Card Generator
+CC Checker
+Notepad Online
+MORE TOOLS
+QR Code Scanner
+Time Card Calculator
+Morse Code Translator
+Image to Text
+Social Media Name Checker
+DNS SERVER DATABASE
+Global DNS Providers
+Australian DNS Servers
+United Kingdom DNS Servers
+United States DNS Servers
+DEVELOPER TOOLS
+Password Generator
+Check HTTP Headers
+Check Website OS
+Page rank Checker
+NETWORK TOOLS
+Port Checker
+MAC Address Lookup
+ASN WHOIS Lookup
+EMAIL TOOLS
+SMTP Test
+Trace Email
+SPF Checker
+IP TOOLS
+What is my IP
+IP Location Lookup
+IP Blacklist Check
+IP WHOIS Lookup
+MOBILE APPS
+Get it on Google Play
+BROWSER ADD-ONS
+Get Chrome Extension
+DNS Checker
+Copyright © DNSChecker.org, All Rights Reserved.
+Contact us
+Privacy
 #    This file will define the following variables:
 #      - @PROJECT_NAME@_LIBS          : The list of libraries to links against.
 #      - @PROJECT_NAME@_LIB_DIR       : The directory where lib files are. Calling LINK_DIRECTORIES
