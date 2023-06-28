@@ -1,0 +1,4 @@
+curl "https://www.spamhero.com/api/sender/approved/delete" \
+-u YOUR_API_KEY_HERE: \
+-d domain=SOME_VALUE \
+-d approved_sender_to_delete=SOME_VALUE
