@@ -2,7 +2,139 @@
 This library allows to use the Raspberry Pi Camera. 
 
 * Main features:
- - Provides  class RaspiCam for easy and full control of the camera
+ - Provides  class RaspiCam for easy and Toggle navigation
+Toggle navigation
+SuperTool Beta7
+website.comk
+dns:website.com  
+Type
+Domain Name
+IP Address
+TTL
+Status
+Time (ms)
+Auth
+Parent
+Local
+NS
+ns1.website.com
+162.159.8.245
+Cloudflare, Inc. (AS13335)
+24 hrs
+Status Ok 
+1
+Status Ok 
+Status Ok 
+Status Ok 
+NS
+ns2.website.com
+162.159.9.164
+Cloudflare, Inc. (AS13335)
+24 hrs
+Status Ok 
+Status Ok 
+Status Ok 
+Status Ok 
+Result
+Status Warning
+SOA Serial Number Format is Invalid
+ns1.website.com reported Serial 2312868412 : Serial year was 2312 which is in the future.
+Information More Info
+Status Warning
+SOA Expire Value out of recommended range
+ns1.website.com reported Expire 604800 : Expire is recommended to be between 1209600 and 2419200.
+Information More Info
+Status Ok
+DNS Record found
+Status Ok
+No Bad Glue Detected
+Status Ok
+At Least Two Name Servers Found
+Status Ok
+All name servers are responding
+Status Ok
+All of the name servers are Authoritative
+Status Ok
+Local NS list matches Parent NS list
+Status Ok
+Name Servers appear to be Dispersed
+Status Ok
+Name Servers have Public IP Addresses
+Status Ok
+Serial numbers match
+2312868412
+Status Ok
+Primary Name Server Listed At Parent
+Status Ok
+SOA Refresh Value is within the recommended range
+Status Ok
+SOA Retry Value is within the recommended range
+Status Ok
+SOA Minimum TTL Value is within allowed values
+Status Ok
+No Open Recursive Name Server Detected
+dns lookup	mx lookup	dmarc lookup	spf lookup	dns propagation
+Reported by ns2.website.com on 6/28/2023 at 1:23:56 AM (UTC -5), just for you.  Transcript
+mx:website.com     
+Mx advertisement image
+Pref
+Hostname
+IP Address
+TTL
+10
+mailsrv101.in2net.com
+65.61.198.231
+In2net Network Inc. (AS26753)
+5 min
+Blacklist Check      SMTP Test
+Test
+Result
+Status Problem
+DMARC Record Published
+No DMARC Record found
+Information More Info
+Status Warning
+DMARC Policy Not Enabled
+DMARC Quarantine/Reject policy not enabled
+Information More Info
+Status Ok
+DNS Record Published
+DNS Record found
+dns lookup	dns check	dmarc lookup	spf lookup	dns propagation
+Reported by ns2.website.com on 6/28/2023 at 1:23:51 AM (UTC -5), just for you.  Transcript
+ABOUT THE SUPERTOOL!
+All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated tool.  Input a domain name or IP Address or Host Name. Links in the results will guide you to other relevant tools and information.  And you'll have a chronological history of your results. 
+
+If you already know exactly what you want, you can force a particular test or lookup.  Try some of these examples:
+
+(e.g. "blacklist: 127.0.0.2" will do a blacklist lookup)
+
+Command	 	Explanation
+blacklist:	 	Check IP or host for reputation
+smtp:	 	Test mail server SMTP (port 25)
+mx:	 	DNS MX records for domain
+a:	 	DNS A record IP address for host name
+spf:	 	Check SPF records on a domain
+txt:	 	Check TXT records on a domain
+ptr:	 	DNS PTR record for host name
+cname:	 	DNS canonical host name to IP address
+whois:	 	Get domain registration information
+arin:		Get IP address block information
+soa:		Get Start of Authority record for a domain
+tcp:		Verify an IP Address allows tcp connections
+http:		Verify a URL allows http connections  
+https:		Verify a URL allows secure http connections  
+ping:		Perform a standard ICMP ping
+trace:		Perform a standard ICMP trace route
+dns:		Check your DNS Servers for possible problems  New!
+ 	 	 
+Other tools
+
+Feedback: If you run into any problems with the site or have an idea that you think would make it better, we would appreciate your feedback. Please leave us some Feedback.
+
+Your IP is: 102.89.40.85|  Contact Terms & Conditions Site Map API Privacy Phone: (866)-MXTOOLBOX / (866)-698-6652 |  © Copyright 2004-2021, MXToolBox, Inc, All rights reserved. US Patents 10839353 B2 & 11461738 B2
+ 
+burritos@banana-pancakes.com braunstrowman@banana-pancakes.com finnbalor@banana-pancakes.com ricflair@banana-pancakes.com randysavage@banana-pancakes.com control of the camera
  - Provides class  RaspiCam_Cv for easy control of the camera with OpenCV.
  - Provides class  RaspiCam_Still and RaspiCam_Still_Cv for controlling the camera in still mode
  - Easy compilation/installation using cmake.
