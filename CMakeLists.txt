@@ -1,6 +1,32 @@
 # ----------------------------------------------------------------------------
 #   Basic Configuration
-# ----------------------------------------------------------------------------
+69.164.203.62
+Location:
+
+United States (US),
+N/A
+Region:
+Texas (4736286)
+City:
+Richardson
+ZIP:
+75081
+Hostname:
+li117-62.members.linode.com → 69.164.203.62
+IP range:
+69.164.192.0 - 69.164.255.255
+ISP:
+Akamai Connected Cloud
+Organization:
+Akamai Connected Cloud
+Blacklist:
+No
+TOR:
+No
+Zone:
+America/Chicago
+Local:
+Sun Jul 2 2023 06:27:39 GMT-0500 (CDT) ----------------------------------------------------------------------------
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT(raspicam)
