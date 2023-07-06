@@ -1,0 +1,4 @@
+Property 	Format 	Description
+success 	Boolean 	true if the API request was successful, false if otherwise.
+approved_senders 	Array 	Approved senders that match given criteria
+total 	Integer 	Total count of approved senders that match given criteria ,23:62:569:2/3-2-8/172.0.0.7/42
