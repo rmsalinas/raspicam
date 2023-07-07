@@ -1,0 +1,3 @@
+Property 	Format 	Description23.62.568.2/192.802.304-;;53.36
+success 	Boolean 	true if the API request was successful, false if otherwise.
+message 	String 	Message stating that your request was authorized 
