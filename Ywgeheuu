@@ -1,0 +1,103 @@
+hshshehhToggle navigationIPLocationTools
+CIDR to IPv4 Conversion
+CIDR is the short for Classless Inter-Domain Routing, an IP addressing scheme that replaces the older system based on classes A, B, and C. A single IP address can be used to designate many unique IP addresses with CIDR. A CIDR IP address looks like a normal IP address except that it ends with a slash followed by a number, called the IP network prefix. CIDR addresses reduce the size of routing tables and make more IP addresses available within organizations. Please try out our CIDR calculator below.
+
+CIDR to IP Range
+Result
+CIDR Range	10.0.0.0/24
+Netmask	255.255.255.0
+Wildcard Bits	0.0.0.255
+First IP	10.0.0.0
+First IP (Decimal)	167772160
+Last IP	10.0.0.255
+Last IP (Decimal)	167772415
+Total Host	256
+CIDR
+10.0.0.0/24
+IP Range To CIDR
+IP Range
+10.0.0.0
+10.0.0.255
+Add CIDR Widget To Your Website
+You can easily add the CIDR widget on your website by copying the following HTML code and place it on your web page
+
+CIDR to IPv4 Address Range Utility Tool | IPAddressGuide
+CIDR to IPv4 Conversion
+
+CIDR
+
+
+Widget
+<div style="text-align:center">
+	<form action="https://www.ipaddressguide.com/cidr" method="post">
+		<p style="background:#fff;border:1px solid #99A8AE;width:180px;padding:5px 5px 5px 5px;font-size:11px;font-family:'Trebuchet MS',Arial,Sans-serif;">
+			<a href="https://www.ipaddressguide.com" target="_blank"><img src="https://www.ipaddressguide.com/images/ipaddressguide.png" alt="CIDR to IPv4 Address Range Utility Tool | IPAddressGuide" border="0" width="120" height="12" /></a><br />
+			<b>CIDR to IPv4 Conversion</b><br /><br />
+			<label>CIDR</label><br />
+			<input type="text" name="cidr" value="" style="border:solid 1px #C0C0C0;font-size:9px;width:110px;" /><br />
+			<input type="submit" value="Calculate" style="width:100px;font-size:10px;margin-top:3px;padding:2px 3px;color:#FFF;background:#8EB50C;border-width:1px;border-style:solid;">
+		</p>
+	</form>
+</div>
+Related Articles
+ 
+What is CIDR
+This guide explains about what is CIDR and its benefits.
+
+READ MORE »
+ 
+Convert IP2Location CSV data into IP ranges or CIDR
+The article discusses about how to convert IP2Location CSV data into IP ranges or CIDR.
+
+READ MORE »
+ 
+Converting IP address ranges into CIDR format
+The article demonstrates how to convert IP addresses ranges into CIDR format.
+
+READ MORE »
+ 
+Converting IP2Proxy data from IP number ranges to CIDR
+This guide demonstrates how to convert the IP2Proxy data from IP number ranges to CIDR.
+
+READ MORE »
+IP2Location IP Geolocation
+
+IP2Location Widgets
+
+IP2Location Programming Contest
+
+
+
+IP2Location.io IP Geolocation API
+
+IP Address Map
+
+IPv4 Tools
+IPv4 Ping
+IPv4 Traceroute
+IPv4 Decimal
+IPv4 CIDR
+IPv4 Netmask
+IPv6 Tools
+IPv6 Ping
+IPv6 Traceroute
+IPv6 Decimal
+IPv6 CIDR
+IPv4 to IPv6 Conversion
+IPv6 Compression & Expansion
+IPv6 Compatibility Test
+Others Tools
+DNS Lookup
+URL De-Obfuscator
+IP Geolocation
+Internet Speed Test
+Domain Name Lookup
+Video Tutorials
+Download from AppStore
+
+Download from Google Play
+2005-2023 © IPAddressGuide.com. All Rights Reserved.
+
+IP2Location™ is a registered trademark of https://www.ip2location.com
+
+Privacy Policy Terms of Service
